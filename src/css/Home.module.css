@@ -1,0 +1,162 @@
+.homePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    background-color: #000000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative; 
+    z-index: 2; 
+}
+
+.navLeft, .navRight {
+    display: flex;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logoImg {
+    height: 40px;
+}
+
+.navLeft a, .navRight a {
+    text-decoration: none;
+    color: #1890ff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.navLeft a:hover, .navRight a:hover {
+    text-decoration: underline;
+}
+
+.heroImage {
+    width: 100vw; /* Ocupa todo el ancho de la pantalla */
+    height: 100vh; /* Ocupa todo el alto de la pantalla */
+    position: relative; /* Para posicionar el texto encima */
+    margin-bottom: 40px; /* Espacio antes de la sección de peleadores */
+}
+
+.heroImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para cubrir todo el espacio */
+}
+
+.heroText {
+    position: absolute; /* Superpone el texto encima de la imagen */
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta el centro */
+    text-align: center;
+    color: #ffffff; /* Texto blanco */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 800px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para el texto */
+}
+
+.heroText h2 {
+    font-size: 48px; /* Tamaño grande para el título */
+    margin-bottom: 20px;
+    color: white;
+}
+
+.heroText p {
+    font-size: 24px; /* Tamaño grande para el texto */
+}
+
+.fightersSection {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.fightersSection h3 {
+    font-size: 20px;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.fightersGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    gap: 20px; /* Espacio entre las tarjetas */
+}
+
+.fighterCard {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.fighterImg {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.fighterCard p {
+    font-size: 16px;
+    color: #333333;
+}
+
+/* Estilos para el footer */
+.footer {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #e0e0e0;
+    margin-top: auto; /* Para que el footer siempre esté abajo */
+}
+
+.footerContent {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555555;
+}
+
+.footer a {
+    color: #1890ff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.socialMedia {
+    margin: 10px 0;
+}
+
+.socialMedia a {
+    margin: 0 10px;
+    font-size: 14px;
+    color: #1890ff;
+}

@@ -1,0 +1,160 @@
+import React, { useState } from 'react';
+import styles from './../Css/Register.module.css'; 
+import { useNavigate } from 'react-router-dom';
+import logo from './../assets/FFC_logo.png'; 
+
+function Register() {
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: ''
+    });
+    const [error] = useState('');
+    const [isLoading] = useState(false);
+
+    const goToLogin = () => {
+        navigate("/Login");
+    };
+
+    const handleGoBack = () => {
+        navigate(-1);
+    };
+
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [id]: value
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        try {
+            const response = await fetch(`/api/register`, { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+            
+    
+            const data = await response.json();
+            if (response.ok) {
+                alert("Registro exitoso");
+                navigate('/Login');
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error("Error en la solicitud:", error);
+            alert("Error al registrar usuario.");
+        }
+    };
+    
+
+
+    return (
+        <div className={styles.registerPage}>
+            <header className={styles.header}>
+                <div className={styles.headerLeft}>
+                    <button className={styles.backButton} onClick={handleGoBack}>Atrás</button>
+                </div>
+                <div className={styles.logo}>
+                    <img src={logo} alt="Logo" className={styles.logoImg} />
+                </div>
+                <div className={styles.headerRight}>
+                    <a href="/Login" className={styles.createAccount}>INICIAR SESIÓN</a>
+                </div>
+            </header>
+
+            <main className={styles.mainContent}>
+                <h2>Registro</h2>
+                
+                {error && <div className={styles.errorMessage}>{error}</div>}
+
+                <form className={styles.registerForm} onSubmit={handleSubmit}>
+                <div className={styles.formGroup}>
+                        <label htmlFor="firstName">Nombre</label>
+                        <input 
+                            id="firstName" 
+                            type="text" 
+                            placeholder="Ingresa tu nombre" 
+                            value={formData.firstName}
+                            onChange={handleChange}
+                            required 
+                        />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                        <label htmlFor="lastName">Apellidos</label>
+                        <input 
+                            id="lastName" 
+                            type="text" 
+                            placeholder="Ingresa tus apellidos" 
+                            value={formData.lastName}
+                            onChange={handleChange}
+                            required 
+                        />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                        <label htmlFor="email">Correo electrónico</label>
+                        <input 
+                            id="email" 
+                            type="email" 
+                            placeholder="Ingresa tu correo" 
+                            value={formData.email}
+                            onChange={handleChange}
+                            required 
+                        />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                        <label htmlFor="password">Contraseña</label>
+                        <input 
+                            id="password" 
+                            type="password" 
+                            placeholder="Ingresa tu contraseña" 
+                            value={formData.password}
+                            onChange={handleChange}
+                            minLength="6"
+                            required 
+                        />
+                    </div>
+
+                    <button 
+                        type="submit" 
+                        className={styles.continueButton}
+                        disabled={isLoading}
+                    >
+                        {isLoading ? 'Registrando...' : 'Continuar'}
+                    </button>
+                </form>
+
+                <p className={styles.loginLink}>
+                    ¿Ya tienes una cuenta?{' '}
+                    <a onClick={goToLogin} style={{ cursor: 'pointer', color: '#1890ff' }}>
+                        Inicia sesión
+                    </a>
+                </p>
+            </main>
+
+            <footer className={styles.footer}>
+                <div className={styles.footerContent}>
+                    <p><a href="/Contacto">Contacto</a></p>
+                    <div className={styles.socialMedia}>
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    </div>
+                    <p>© {new Date().getFullYear()} Tu Empresa. Todos los derechos reservados.</p>
+                </div>
+            </footer>
+        </div>
+    );
+}
+
+export default Register;
