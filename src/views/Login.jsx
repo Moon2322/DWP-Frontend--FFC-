@@ -34,7 +34,7 @@ function Login() {
                 <form className={styles.loginForm} onSubmit={handleLogin}>
                     <div className={styles.formGroup}>
                         <label htmlFor="email">Correo electrónico</label>
-                        <input id="email" type="email" placeholder="Ingresa tu correo" required />
+                        <input id="email" type="email" placeholder="Ingresa tu correoooooooooo" required />
                     </div>
 
                     <div className={styles.formGroup}>
