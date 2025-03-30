@@ -14,7 +14,7 @@ function Login() {
     const handleLogin = (event) => {
         event.preventDefault();
         // Aquí manejar la lógica de inicio de sesión
-        console.log("Iniciando sesión...Holaaa");
+        console.log("Iniciando sesión...");
     };
 
     return (
