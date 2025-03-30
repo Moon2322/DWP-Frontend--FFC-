@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './../Css/Contact.module.css'; // Importar como módulo
+import styles from './../css/Contact.module.css'; 
 import { useNavigate } from 'react-router-dom';
 import logo from './../assets/FFC_logo.png';
 
