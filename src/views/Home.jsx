@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './../Css/Home.module.css'; 
+import styles from './../css/Home.module.css'; 
 import { useNavigate } from 'react-router-dom';
 import logo from './../assets/FFC_logo.png'; 
 import fighter1 from './../assets/stich.png';

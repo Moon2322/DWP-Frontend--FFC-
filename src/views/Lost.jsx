@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './../Css/Lost.module.css'; // Importar como módulo
+import styles from './../css/Lost.module.css'; // Importar como módulo
 
 const Lost = () => {
     const navigate = useNavigate();

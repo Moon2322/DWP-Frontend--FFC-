@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './../Css/Register.module.css'; 
+import styles from './../css/Register.module.css'; 
 import { useNavigate } from 'react-router-dom';
 import logo from './../assets/FFC_logo.png'; 
 
