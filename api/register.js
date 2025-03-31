@@ -1,15 +1,17 @@
+import dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 import User from '../models/User.js';
 import sendVerificationEmail from '../utils/sendEmail.js';
 
 dotenv.config();
+const app = express();
+app.use(express.json());
+app.use(cors());
 
 export default async function handler(req, res) {
-    if (req.method !== 'POST') {
-        return res.status(405).json({ message: 'Método no permitido' });
-    }
     
     const { firstName, lastName, email, password } = req.body;
     if (!firstName || !lastName || !email || !password) {
@@ -29,10 +31,8 @@ export default async function handler(req, res) {
         const newUser = new User({ firstName, lastName, email, password: hashedPassword, verificationToken, isVerified: false });
         await newUser.save();
         
-        // 🚀 Enviar respuesta inmediatamente sin esperar el correo
         res.status(201).json({ message: 'Usuario registrado con éxito. Verifica tu correo electrónico.' });
 
-        // 📨 Enviar el correo en segundo plano sin bloquear la API
         sendVerificationEmail(email, verificationToken)
             .catch(err => console.error("Error enviando correo:", err));
 
