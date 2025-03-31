@@ -11,11 +11,34 @@ function Login() {
     };
 
 
-    const handleLogin = (event) => {
+    const handleLogin = async (event) => {
         event.preventDefault();
-        // Aquí manejar la lógica de inicio de sesión
-        console.log("Iniciando sesión...");
+    
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+    
+        try {
+            const response = await fetch(`/api/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
+            });
+    
+            const data = await response.json();
+    
+            if (response.ok) {
+                alert("Inicio de sesión exitoso");
+                localStorage.setItem("token", data.token); // Guardar el token en localStorage
+                navigate("/");
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error("Error en el login:", error);
+            alert("Error al iniciar sesión.");
+        }
     };
+    
 
     return (
                   <div className={styles.loginPage}>
