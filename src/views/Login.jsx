@@ -29,7 +29,7 @@ function Login() {
             if (response.ok) {
                 alert("Inicio de sesión exitoso");
                 localStorage.setItem("token", data.token); // Guardar el token en localStorage
-                navigate("/");
+                navigate("/Home");
             } else {
                 alert(data.message);
             }
