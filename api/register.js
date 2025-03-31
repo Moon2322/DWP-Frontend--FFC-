@@ -25,15 +25,17 @@ export default async function handler(req, res) {
         const hashedPassword = await bcrypt.hash(password, 10);
         // eslint-disable-next-line no-undef
         const verificationToken = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        
+
         const newUser = new User({ firstName, lastName, email, password: hashedPassword, verificationToken, isVerified: false });
         await newUser.save();
         
+        // 🚀 Enviar respuesta inmediatamente sin esperar el correo
         res.status(201).json({ message: 'Usuario registrado con éxito. Verifica tu correo electrónico.' });
 
+        // 📨 Enviar el correo en segundo plano sin bloquear la API
+        sendVerificationEmail(email, verificationToken)
+            .catch(err => console.error("Error enviando correo:", err));
 
-        await sendVerificationEmail(email, verificationToken);
-        
     } catch (error) {
         res.status(500).json({ message: 'Error en el servidor: ' + error.message });
     }
