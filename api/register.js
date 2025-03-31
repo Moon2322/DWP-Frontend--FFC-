@@ -29,9 +29,11 @@ export default async function handler(req, res) {
         const newUser = new User({ firstName, lastName, email, password: hashedPassword, verificationToken, isVerified: false });
         await newUser.save();
         
+        res.status(201).json({ message: 'Usuario registrado con éxito. Verifica tu correo electrónico.' });
+
+
         await sendVerificationEmail(email, verificationToken);
         
-        res.status(201).json({ message: 'Usuario registrado con éxito. Verifica tu correo electrónico.' });
     } catch (error) {
         res.status(500).json({ message: 'Error en el servidor: ' + error.message });
     }

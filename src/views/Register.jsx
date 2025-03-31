@@ -137,7 +137,7 @@ function Register() {
                                 placeholder="Ingresa tu contraseña" 
                                 value={formData.password}
                                 onChange={handleChange}
-                                minLength="6"
+                                minLength="3"
                                 required 
                             />
                         </div>
